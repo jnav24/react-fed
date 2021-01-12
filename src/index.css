@@ -9,7 +9,7 @@ body {
 }
 
 .card .card-workouts {
-    @apply transition duration-500 ease-in-out transform translate-x-32;
+    @apply transition duration-500 ease-in-out transform translate-x-full;
 }
 .card:hover .card-workouts {
     @apply translate-x-0;
