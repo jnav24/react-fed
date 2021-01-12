@@ -7,7 +7,7 @@ import PaperClipIcon from './icons/PaperClipIcon';
 
 type CardProps = {
     data: CardType;
-}
+};
 
 const Card: React.FC<CardProps> = ({ data }): ReactElement => {
     const [img, setImg] = useState<null | string>(null);
@@ -17,17 +17,28 @@ const Card: React.FC<CardProps> = ({ data }): ReactElement => {
     useEffect(() => {
         (async () => {
             setImg((await import(`../images/${data.image}`)).default ?? null);
-            setThumb((await import(`../images/${data.thumbnail}`)).default ?? null);
+            setThumb(
+                (await import(`../images/${data.thumbnail}`)).default ?? null
+            );
         })();
     }, []);
 
     return (
-        <div className={`card bg-white rounded-md w-1/5 mr-6 mb-6 transition duration-300 ${!selected ? 'shadow' : 'shadow-xl'}`} onClick={() => setSelected(!selected)}>
+        <div
+            className={`card bg-white rounded-md w-1/5 mr-6 mb-6 transition duration-300 ${
+                !selected ? 'shadow' : 'shadow-xl'
+            }`}
+            onClick={() => setSelected(!selected)}
+        >
             {img && (
                 <div className="relative overflow-x-hidden">
                     <div className="absolute inset-y-0 right-0 bg-black bg-opacity-50 h-full w-1/3 text-white flex flex-col justify-center items-center card-workouts">
-                        <p className="text-2xl text-white mb-4 font-bold">{data.workouts}</p>
-                        <p className="text-gray-100 uppercase text-sm">Workouts</p>
+                        <p className="text-2xl text-white mb-4 font-bold">
+                            {data.workouts}
+                        </p>
+                        <p className="text-gray-100 uppercase text-sm">
+                            Workouts
+                        </p>
                         <ListIcon className="text-gray-100 w-8 h-8" />
                     </div>
                     <img src={img} alt="" className="object-cover w-full" />
@@ -36,7 +47,7 @@ const Card: React.FC<CardProps> = ({ data }): ReactElement => {
             <div className="p-4">
                 <div className="flex flex-row items-start justify-between">
                     <h2 className="w-11/12 text-xl font-bold">{data.title}</h2>
-                    {thumb && <img src={thumb} alt=""/>}
+                    {thumb && <img src={thumb} alt="" />}
                 </div>
 
                 <div className="flex flex-row items-center justify-start my-2">
@@ -55,7 +66,12 @@ const Card: React.FC<CardProps> = ({ data }): ReactElement => {
                 </div>
 
                 {data.details && (
-                    <a href="#" className="text-link uppercase font-bold hover:underline">View Details</a>
+                    <a
+                        href="#"
+                        className="text-link uppercase font-bold hover:underline"
+                    >
+                        View Details
+                    </a>
                 )}
             </div>
         </div>
